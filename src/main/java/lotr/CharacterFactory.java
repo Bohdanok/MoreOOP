@@ -3,24 +3,21 @@ package lotr;
 import java.util.Random;
 
 public class CharacterFactory {
+    private final Class<?>[] CHARACTER_CLASSES = {
+        Elf.class, 
+        Hobbit.class, 
+        King.class, 
+        Knight.class
+    };
     public Character createCharacter(){
         Random rand = new Random();
-        
-        int number = rand.nextInt(4) + 1;
-        if(number == 1){
 
-            return new Elf();
-        }
-        else if(number == 2){
-
-            return new Hobbit();
-        }
-        else if(number == 3){
-
-            return new King();
-        }
-        else{
-            return new Knight();
+        int index = rand.nextInt(4);
+        try{
+        return (Character) CHARACTER_CLASSES[index].getDeclaredConstructor().newInstance();
+        } catch(Exception exception){
+            exception.printStackTrace();
+            return null;
         }
     }
 }

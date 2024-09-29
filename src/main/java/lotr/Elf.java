@@ -7,7 +7,7 @@ public class Elf extends Character{
     public Elf(){
         super(10, 10);
     }
-
+    @Override
     public void kick(Character c){
         if(this.power > c.getPower()){
             c.setHp(0);
